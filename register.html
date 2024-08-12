@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat's Kindergarten Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Amatic SC', cursive;
+            background-color: #f5f5dc; 
+            color: #5d4037; 
+            text-align: center;
+            margin: 20px;
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #795548; 
+        }
+        form {
+            margin-bottom: 30px;
+        }
+        input[type="text"], input[type="number"], input[type="email"], input[type="date"] {
+            font-size: 24px;
+            padding: 10px;
+            margin: 10px;
+            border: 2px solid #8d6e63; 
+            border-radius: 5px;
+            background-color: #efebe9; 
+            color: #5d4037; 
+        }
+        input[type="submit"] {
+            font-size: 24px;
+            padding: 10px 20px;
+            background-color: #a1887f; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            font-size: 24px;
+            padding: 15px;
+            border: 2px solid #5d4037; 
+        }
+        th {
+            background-color: #a1887f; 
+            color: white;
+        }
+        nav {
+            margin-bottom: 30px;
+        }
+        nav a {
+            display: inline-block;
+            font-size: 24px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: 2px solid #8d6e63; 
+            border-radius: 5px;
+            background-color: #efebe9; 
+            color: #5d4037; 
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        nav a:hover {
+            background-color: #8d6e63; 
+            color: white;
+        }
+        .contact-field {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .contact-field label {
+            margin-right: 10px;
+        }
+        .print-button {
+            font-size: 24px;
+            padding: 10px 20px;
+            background-color: #8d6e63; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+        }
+        @media print {
+            nav, footer, .print-button {
+                display: none;
+            }
+            table {
+                width: 100%;
+                border: 1px solid #5d4037;
+            }
+            th, td {
+                border: 1px solid #5d4037;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+ <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="register.html">Register</a>
+        <a href="facilities.html">Facilities</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="video.html">Video</a>
+        <a href="buy.html">Buy</a>
+    </nav>
+
+    <h1>Register Your Cat</h1>
+    <form id="registrationForm">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="cat-name">Cat's Name:</label>
+        <input type="text" id="cat-name" name="cat_name" required>
+        
+        <label for="cat-age">Cat's Age:</label>
+        <input type="number" id="cat-age" name="cat_age" required>
+        
+        <div class="contact-field">
+            <label for="contact-number">Contact Number:</label>
+            <input type="number" id="contact-number" name="contact_number" required>
+        </div>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="registrationDate">Date:</label>
+        <input type="date" id="registrationDate" name="registration_date" required>
+
+          <label for="pricing">Select Pricing:</label>
+        <select id="pricing" name="pricing" required>
+            <option value="Daily">Daily - RM110</option>
+            <option value="Weekly">Weekly - RM330</option>
+            <option value="Monthly">Monthly - RM2200</option>
+        </select>
+       
+        <input type="submit" value="Register">
+    </form>
+
+    <table id="registrationTable">
+        <thead>
+            <tr>
+                <th>Your Name</th>
+                <th>Cat's Name</th>
+                <th>Cat's Age</th>
+                <th>Contact Number</th>
+                <th>Email</th>
+                <th>Date</th>
+                <th>Pricing</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Registration records will appear here -->
+        </tbody>
+    </table>
+
+    <button class="print-button" onclick="printTable()">Print Table</button>
+
+    <footer>
+        <p>&copy; 2024 Cat's Kindergarten. All rights reserved.</p>
+    </footer>
+
+    <script>
+       
+        window.onload = function() {
+            const tableBody = document.getElementById('registrationTable').getElementsByTagName('tbody')[0];
+            const data = JSON.parse(localStorage.getItem('registrations')) || [];
+            
+            data.forEach(record => {
+                const newRow = tableBody.insertRow();
+                Object.values(record).forEach(value => {
+                    const cell = newRow.insertCell();
+                    cell.textContent = value;
+                });
+
+                
+                const deleteCell = newRow.insertCell();
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.addEventListener('click', function() {
+                    newRow.remove();
+                    // Remove the record from localStorage
+                    const index = data.indexOf(record);
+                    if (index > -1) {
+                        data.splice(index, 1);
+                        localStorage.setItem('registrations', JSON.stringify(data));
+                    }
+                });
+                deleteCell.appendChild(deleteButton);
+            });
+        };
+
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            
+            const name = document.getElementById('name').value;
+            const catName = document.getElementById('cat-name').value;
+            const catAge = document.getElementById('cat-age').value;
+            const contactNumber = document.getElementById('contact-number').value;
+            const email = document.getElementById('email').value;
+            const registrationDate = document.getElementById('registrationDate').value;
+            const pricing = document.getElementById('pricing').value;
+
+            const record = { name, catName, catAge, contactNumber, email, registrationDate, pricing };
+
+             
+            const data = JSON.parse(localStorage.getItem('registrations')) || [];
+            data.push(record);
+            localStorage.setItem('registrations', JSON.stringify(data));
+
+            
+            const table = document.getElementById('registrationTable').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+            
+            
+            Object.values(record).forEach(value => {
+                const cell = newRow.insertCell();
+                cell.textContent = value;
+            });
+
+            
+            const deleteCell = newRow.insertCell();
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.addEventListener('click', function() {
+                newRow.remove();
+                
+                const index = data.indexOf(record);
+                if (index > -1) {
+                    data.splice(index, 1);
+                    localStorage.setItem('registrations', JSON.stringify(data));
+                }
+            });
+            deleteCell.appendChild(deleteButton);
+
+            // Reset the form after submission
+            document.getElementById('registrationForm').reset();
+        });
+
+        function printTable() {
+            const printWindow = window.open('', '', 'height=600,width=800');
+            printWindow.document.write('<html><head><title>Print Table</title>');
+            printWindow.document.write('<style>@media print { .print-button { display: none; } }</style>'); // Hide print button on print
+            printWindow.document.write('</head><body >');
+            printWindow.document.write(document.querySelector('table').outerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.focus();
+            printWindow.print();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat's Kindergarten - Video Tutorials</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap">
+    <style>
+        body {
+            background-color: #f5f2eb; 
+            color: #6f4f28;
+            font-family: 'Amatic SC', cursive;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #d8c5b3; 
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+            border-bottom: 5px solid #c6b69e;
+        }
+
+        header h1 {
+            font-size: 60px; 
+        }
+
+        header p {
+            font-size: 30px;
+        }
+
+        nav {
+            background-color: #c6b69e; 
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            margin: 0 15px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            background-color: #a89f91; 
+            transition: background-color 0.3s ease;
+            font-size: 24px; 
+        }
+
+        nav a:hover {
+            background-color: #8d7c68;
+        }
+
+        section {
+            padding: 20px;
+            text-align: center; 
+        }
+
+        section h2 {
+            color: #8d7c68; 
+            margin-bottom: 20px;
+            font-size: 60px; 
+        }
+
+        section p {
+            font-size: 30px; 
+        }
+
+        footer {
+            background-color: #d8c5b3; 
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        footer p {
+            font-size: 24px;
+            margin: 0; 
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .video-wrapper {
+            width: 45%; 
+            position: relative;
+        }
+
+        .video-wrapper h3 {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            font-size: 24px;
+            border-radius: 5px;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            border: 5px solid #c6b69e;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Video Tutorials</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="register.html">Register</a>
+        <a href="facilities.html">Facilities</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="video.html">Video</a>
+        <a href="buy.html">Buy</a>
+    </nav>
+
+    <section>
+        <div class="video-container">
+            <div class="video-wrapper">
+                <h3>Tutorial 1: How to regieter?</h3>
+                <video controls>
+                    <source src="videoo.MOV" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="video-wrapper">
+                <h3>Tutorial 2: How to buy?</h3>
+                <video controls>
+                    <source src="tutorial.MOV" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Cat's Kindergarten. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

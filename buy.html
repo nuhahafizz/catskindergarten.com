@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Store</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Amatic SC', cursive;
+            background-color: #f5f2eb;
+            color: #6f4f28;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #d8c5b3;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+            border-bottom: 5px solid #c6b69e;
+        }
+
+        header h1 {
+            font-size: 60px;
+        }
+
+        nav {
+            background-color: #c6b69e;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            margin: 0 15px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            background-color: #a89f91;
+            transition: background-color 0.3s ease;
+            font-size: 24px;
+        }
+
+        nav a:hover {
+            background-color: #8d7c68;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .product {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: white;
+            text-align: center;
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 28px;
+            color: #6f4f28;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #cart {
+            margin-top: 20px;
+            border-top: 2px solid #ddd;
+            padding-top: 20px;
+        }
+
+        #cart-items {
+            list-style: none;
+            padding: 0;
+        }
+
+        #cart-items li {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .remove-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .remove-button:hover {
+            background-color: #e53935;
+        }
+
+        #user-details {
+            margin-top: 20px;
+            border-top: 2px solid #ddd;
+            padding-top: 20px;
+        }
+
+        #user-details input[type="text"], #user-details input[type="tel"], #user-details textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 18px;
+            font-family: 'Amatic SC', cursive;
+        }
+
+        footer {
+            background-color: #d8c5b3;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        footer p {
+            font-size: 24px;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Cat Store</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="register.html">Register</a>
+            <a href="facilities.html">Facilities</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="video.html">Video</a>
+            <a href="buy.html">Buy</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="products">
+            <div class="product">
+                <h2>Royal Canin</h2>
+                <img src="royalcanin.jpg" alt="Royal Canin">
+                <p class="price">Price: RM100</p>
+                <button onclick="addToCart('Royal Canin', 100)">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <h2>Cat Clothes</h2>
+                <img src="clothes.jpg" alt="Cat Clothes">
+                <p class="price">Price: RM50</p>
+                <button onclick="addToCart('Cat Clothes', 50)">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <h2>Cat Toys</h2>
+                <img src="toys.jpg" alt="Cat Toys">
+                <p class="price">Price: RM30</p>
+                <button onclick="addToCart('Cat Toys', 30)">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <h2>Cat Merchandise</h2>
+                <img src="merchandise.jpg" alt="Cat Merchandise">
+                <p class="price">Price: RM70</p>
+                <button onclick="addToCart('Cat Merchandise', 70)">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <h2>Cat House</h2>
+                <img src="house.jpg" alt="Cat House">
+                <p class="price">Price: RM150</p>
+                <button onclick="addToCart('Cat House', 150)">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <h2>Cat Bed</h2>
+                <img src="bed.jpg" alt="Cat Bed">
+                <p class="price">Price: RM90</p>
+                <button onclick="addToCart('Cat Bed', 90)">Add to Cart</button>
+            </div>
+        </section>
+
+        <section id="cart">
+            <h2>Your Cart</h2>
+            <ul id="cart-items">
+                <!-- Cart items will be dynamically added here -->
+            </ul>
+            <p>Total: RM<span id="cart-total">0</span></p>
+        </section>
+
+        <section id="user-details">
+            <h2>Your Details</h2>
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="tel" id="phone" placeholder="Phone Number" required>
+            <textarea id="address" placeholder="Address" rows="4" required></textarea>
+            <button onclick="checkout()">Checkout</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Cat Store. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let cart = [];
+        let cartTotal = 0;
+
+        function addToCart(product, price) {
+            cart.push({ product, price });
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            const cartTotalElem = document.getElementById('cart-total');
+
+            cartItems.innerHTML = '';
+            cartTotal = 0;
+
+            cart.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `${item.product} - RM${item.price} <button class="remove-button" onclick="removeFromCart(${index})">Remove</button>`;
+                cartItems.appendChild(li);
+                cartTotal += item.price;
+            });
+
+            cartTotalElem.textContent = cartTotal;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+
+            if (!name || !phone || !address) {
+                alert('Please fill in all your details before checking out.');
+                return;
+            }
+
+            alert(`Thank you for your purchase, ${name}! Your total is RM${cartTotal}. We will contact you at ${phone} and deliver your order to ${address}.`);
+
+            cart = [];
+            updateCart();
+
+            document.getElementById('name').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('address').value = '';
+        }
+    </script>
+</body>
+
+</html>
+
